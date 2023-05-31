@@ -6,10 +6,11 @@ using namespace std;
 
 class QuadTree{
     private:
+        Nodo* raiz;
         int countPoints;
         int totalNodos;
     public:
-        QuadTree(int, int, int, int);
+        QuadTree(Point, Point);
         ~QuadTree();
         int totalPoints();
         int totalNodes();
@@ -17,4 +18,4 @@ class QuadTree{
         void list();
         int countRegion(Point, int);
         int aggregateRegion(Point, int);
-}
+};

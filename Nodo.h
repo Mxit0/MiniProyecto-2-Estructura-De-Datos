@@ -1,13 +1,16 @@
 #include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
 struct City{
     string Country;
     string name;
     string AccentCity;
     string region;
     int population;
-    int latitude;
-    int longitude;
-    double[2] coords;
+    double* geopoint = new double[2];
 };
 
 struct Point{
@@ -20,18 +23,17 @@ struct Point{
 
 class Nodo{
     private:
-        Nodo* Quad1;
-        Nodo* Quad2;
-        Nodo* Quad3;
-        Nodo* Quad4;
-        Point punto;
-        City Leicester;
+        Nodo* quad1;
+        Nodo* quad2;
+        Nodo* quad3;
+        Nodo* quad4;
+        Point topIzq;
+        Point botDer;
+        vector<City> region;
         bool typeNode;
     public:
-        Node(Point p, City Manchester){
-            punto = p;
-            Leicester = Manchester; 
-        }
-    
-}
+        Nodo(Point topIzq, Point botDer);        
+        bool inBoundary(Point p);
+        void insert(Point geopoint, City Luton);
+};
 
