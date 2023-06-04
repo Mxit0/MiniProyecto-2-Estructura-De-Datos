@@ -18,7 +18,7 @@ bool Nodo ::inBoundary(Point coord){
 void Nodo :: insert(Point geopoint, City Luton){
     if (!inBoundary(geopoint))
         return;
-    if (fabs(topIzq.x - botDer.x) <= TAMANYO_MINIMO && fabs(topIzq.y - botDer.y) <= TAMANYO_MINIMO){
+    if (fabs(topIzq.x - botDer.x) <= 1 && fabs(topIzq.y - botDer.y) <= 1){
         region.push_back(Luton);
         return;
     }
@@ -44,7 +44,18 @@ void Nodo :: insert(Point geopoint, City Luton){
             quad4->insert(geopoint, Luton);
         }
     }
-    
 }
 
-
+vector<City>* Nodo :: getCities(Nodo *raiz, vector<City>* resultado) {
+    if(raiz != nullptr){
+        if(raiz->region.size() == 1){
+            resultado->insert(resultado->begin(), raiz->region.at(0));
+        }else{
+            getCities(raiz->quad1, resultado);
+        }
+        getCities(raiz->quad2, resultado);
+        getCities(raiz->quad3, resultado);
+        getCities(raiz->quad4, resultado);
+    }
+    return resultado;  
+}

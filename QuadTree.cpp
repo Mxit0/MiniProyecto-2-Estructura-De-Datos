@@ -13,11 +13,12 @@ int QuadTree :: totalPoints(){
 int QuadTree :: totalNodes(){
     return totalNodos;
 }
-void QuadTree :: insert(Point, int){
-
+void QuadTree :: insert(Point geopoint, City Cardiff){
+    raiz->insert(geopoint, Cardiff);
+    countPoints++;
 }
 void QuadTree :: list(){
-
+    
 }
 int QuadTree :: countRegion(Point, int){
 

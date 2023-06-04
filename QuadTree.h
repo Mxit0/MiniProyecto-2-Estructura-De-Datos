@@ -14,7 +14,7 @@ class QuadTree{
         ~QuadTree();
         int totalPoints();
         int totalNodes();
-        void insert(Point, City, int);
+        void insert(Point, City);
         void list();
         int countRegion(Point, int);
         int aggregateRegion(Point, int);
