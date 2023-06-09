@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <Nodo.h>
+#include "Nodo.h"
 using namespace std;
 
 class QuadTree{
     private:
-        Nodo* raiz;
         int countPoints;
         int totalNodos;
+        Nodo* raiz;
     public:
         QuadTree(Point, Point);
         ~QuadTree();
@@ -18,4 +18,5 @@ class QuadTree{
         void list();
         int countRegion(Point, int);
         int aggregateRegion(Point, int);
+        Nodo* getRoot();
 };

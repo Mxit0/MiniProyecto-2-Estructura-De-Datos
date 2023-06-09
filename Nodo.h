@@ -2,7 +2,6 @@
 #include <string>
 #include <cmath>
 #include <vector>
-
 using namespace std;
 
 struct City{
@@ -11,6 +10,8 @@ struct City{
     string accentCity;
     string region;
     int population;
+    double latitude;
+    double longitude;
     double* geopoint = new double[2];
 };
 
@@ -41,5 +42,6 @@ class Nodo{
         bool inBoundary(Point p);
         void insert(Point geopoint, City Luton);
         vector<City>* getCities(Nodo*, vector<City>*);
+        int getNumNodos();
 };
 

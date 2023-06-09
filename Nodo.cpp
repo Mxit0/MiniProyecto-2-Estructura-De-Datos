@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "Nodo.h"
 
 using namespace std;
@@ -15,6 +14,7 @@ Nodo :: Nodo(Point topIzq, Point botDer){
 bool Nodo ::inBoundary(Point coord){
     return (coord.x >= topIzq.x && coord.x <= botDer.x && coord.y >= topIzq.y && coord.y <= botDer.y);
 }
+
 void Nodo :: insert(Point geopoint, City Luton){
     if (!inBoundary(geopoint))
         return;
@@ -57,5 +57,24 @@ vector<City>* Nodo :: getCities(Nodo *raiz, vector<City>* resultado) {
         getCities(raiz->quad3, resultado);
         getCities(raiz->quad4, resultado);
     }
-    return resultado;  
+    return resultado;
+}
+
+int Nodo::getNumNodos() {
+    int count = 1;
+    
+    if (quad1 != nullptr) {
+        count += quad1->getNumNodos();
+    }
+    if (quad2 != nullptr) {
+        count += quad2->getNumNodos();
+    }
+    if (quad3 != nullptr) {
+        count += quad3->getNumNodos();
+    }
+    if (quad4 != nullptr) {
+        count += quad4->getNumNodos();
+    }
+    
+    return count;
 }
