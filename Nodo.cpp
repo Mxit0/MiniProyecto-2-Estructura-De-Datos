@@ -10,16 +10,19 @@ Nodo :: Nodo(Point topIzq, Point botDer){
     quad2 = nullptr;
     quad3 = nullptr;
     quad4 = nullptr;
+    tipo = "blanco";
 }
 bool Nodo ::inBoundary(Point coord){
     return (coord.x >= topIzq.x && coord.x <= botDer.x && coord.y >= topIzq.y && coord.y <= botDer.y);
 }
 
 void Nodo :: insert(Point geopoint, City Luton){
-    if (!inBoundary(geopoint))
+    if (!inBoundary(geopoint)){
         return;
+    }
     if (fabs(topIzq.x - botDer.x) <= 1 && fabs(topIzq.y - botDer.y) <= 1){
         region.push_back(Luton);
+        tipo = "negro";
         return;
     }
 

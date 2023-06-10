@@ -37,7 +37,8 @@ class Nodo{
         Point topIzq;
         Point botDer;
         vector<City> region;
-
+        string tipo;
+    
         Nodo(Point topIzq, Point botDer);        
         bool inBoundary(Point p);
         void insert(Point geopoint, City Luton);
