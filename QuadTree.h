@@ -7,7 +7,6 @@ using namespace std;
 class QuadTree{
     private:
         int countPoints;
-        int totalNodos;
         Nodo* raiz;
     public:
         QuadTree(Point, Point);

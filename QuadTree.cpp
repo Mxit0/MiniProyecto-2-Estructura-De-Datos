@@ -3,6 +3,7 @@
 
 QuadTree :: QuadTree(Point a, Point b){
     raiz = new Nodo(a, b);
+    countPoints = 0;
 }
 QuadTree :: ~QuadTree(){
 
@@ -23,32 +24,15 @@ void QuadTree :: list(){
     for(int i = 0; i < ciudades->size(); i++){
         cout << "City: " << ciudades->at(ciudades->size()-1-i).name << ", Country: " << ciudades->at(ciudades->size()-1-i).country << ", Population: " << ciudades->at(ciudades->size()-1-i).population << endl;
     }
+    delete ciudades;
 }
 int QuadTree :: countRegion(Point p, int d){
-    vector<City>* ciudades = new vector<City>();
-    ciudades = raiz->getCities(raiz, ciudades);
-    int countPoint = 0;
-    for (const auto& city : *ciudades) {
-        double distancia = sqrt(pow((city.geopoint[0] - p.x), 2) + pow((city.geopoint[1] - p.y), 2));
-        if (distancia <= d) {
-            countPoint++;
-        }
-    }
-
-    return countPoint;
+    int count = 0;
+    return count;
 }
 int QuadTree :: aggregateRegion(Point p, int d){
-    vector<City>* ciudades = new vector<City>();
-    ciudades = raiz->getCities(raiz, ciudades);
-    int population = 0;
-    for (const auto& city : *ciudades) {
-        double distancia = sqrt(pow((city.geopoint[0] - p.x), 2) + pow((city.geopoint[1] - p.y), 2));
-        if (distancia <= d) {
-            population += city.population;
-        }
-    }
-
-    return population;
+    int aggregate = 0;
+    return aggregate;
 }
 
 Nodo* QuadTree :: getRoot(){
