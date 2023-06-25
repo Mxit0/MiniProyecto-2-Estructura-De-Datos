@@ -8,6 +8,7 @@ class QuadTree{
     private:
         Point leftU, rightL;
         City ciudad;
+        vector<City>* notInserted;
         QuadTree* Quad1;
         QuadTree* Quad2;
         QuadTree* Quad3;

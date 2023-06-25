@@ -83,7 +83,7 @@ int QuadTree :: totalNodes(){
 
 void QuadTree :: insert(Point geopoint, City Luton){
     //Comprobar si las coordenadas del punto pertenecen a la region
-    if (geopoint.x >= leftU.x && geopoint.x <= rightL.x && geopoint.y >= leftU.y && geopoint.y <= rightL.y) {
+    if (geopoint.x < leftU.x && geopoint.x > rightL.x && geopoint.y < leftU.y && geopoint.y > rightL.y) {
         return;
     }
     //Comprobar si estamos ante un Nodo unitario, e insertar si no esta ocupado
@@ -91,6 +91,7 @@ void QuadTree :: insert(Point geopoint, City Luton){
         if (type == false){
             ciudad = Luton;
             type = true;
+            cout<<"Se ha guardado la ciudad en las coordenadas: " <<"latitud: "<<leftU.x<<" - "<<"longitud: "<<leftU.y<<endl;
         }else{
             notInserted->insert(notInserted->begin(),Luton);
         }
@@ -144,17 +145,41 @@ int QuadTree :: countRegion(Point p, int d){
     Point alpha, beta;
     alpha = Point(p.x-d,p.y-d);
     beta = Point(p.x+d,p.y+d);
-    if(alpha.x >= leftU.x && alpha.y >= leftU.y || beta.x <= rightL.x && beta.y <= rightL.y){
-        result += this->totalNodes();
-    }else{
-        result += Quad1->countRegion(p, d);
-        result += Quad2->countRegion(p, d);
-        result += Quad3->countRegion(p, d);
-        result += Quad4->countRegion(p, d);
+    if(alpha.x <= leftU.x && alpha.y <= leftU.y && beta.x >= rightL.x && beta.y >= rightL.y){
+     if(abs(leftU.x - rightL.x) <= 1 && abs(leftU.y - rightL.y) <= 1){
+        result ++;
+        }
     }
+        if(Quad1 != nullptr)
+            result += Quad1->countRegion(p, d);
+        if(Quad2 != nullptr)
+            result += Quad2->countRegion(p, d);
+        if(Quad3 != nullptr)
+            result += Quad3->countRegion(p, d);
+        if(Quad4 != nullptr)
+            result += Quad4->countRegion(p, d);
+            
     return result;
 }
 
 int QuadTree :: aggregateRegion(Point p, int d){
-    return 0;
+    int result = 0;
+    Point alpha, beta;
+    alpha = Point(p.x-d,p.y-d);
+    beta = Point(p.x+d,p.y+d);
+    if(alpha.x <= leftU.x && alpha.y <= leftU.y && beta.x >= rightL.x && beta.y >= rightL.y){
+     if(abs(leftU.x - rightL.x) <= 1 && abs(leftU.y - rightL.y) <= 1){
+        result +=ciudad.population;
+        }
+    }
+        if(Quad1 != nullptr)
+            result += Quad1->aggregateRegion(p, d);
+        if(Quad2 != nullptr)
+            result += Quad2->aggregateRegion(p, d);
+        if(Quad3 != nullptr)
+            result += Quad3->aggregateRegion(p, d);
+        if(Quad4 != nullptr)
+            result += Quad4->aggregateRegion(p, d);
+            
+    return result;
 }
