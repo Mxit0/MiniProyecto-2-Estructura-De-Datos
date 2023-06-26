@@ -15,9 +15,6 @@ struct Point{
         y = 0;
     }
 
-    void showPoint() const {
-        cout << this->x << " , " << this->y << endl;
-    }
 };
 
 struct City{
