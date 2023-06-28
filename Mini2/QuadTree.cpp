@@ -12,7 +12,14 @@ QuadTree :: QuadTree(Point a, Point b){
     this->type = false;
 }
 
-QuadTree :: ~QuadTree(){
+QuadTree :: ~QuadTree(QuadTree* nodo){
+    if (nodo == nullptr)
+        return;
+    deleteQuadTree(nodo->Quad1);
+    deleteQuadTree(nodo->Quad2);
+    deleteQuadTree(nodo->Quad3);
+    deleteQuadTree(nodo->Quad4);
+    delete nodo;
 }
 
 int QuadTree :: totalPoints(){
